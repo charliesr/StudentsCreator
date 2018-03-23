@@ -42,9 +42,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ITextFileCreator.cs" />
+    <Compile Include="JsonFile.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Strudent.cs" />
+    <Compile Include="Student.cs" />
+    <Compile Include="TextFileFactory.cs" />
+    <Compile Include="TxtFile.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

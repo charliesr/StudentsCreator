@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Configuration;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -9,20 +10,39 @@ namespace StudentCreator
 {
     class Program
     {
+        public enum TipoArchivo
+        {
+            Json = 1,
+            Txt = 2
+
+        }
+
         private enum OpcionPpal
         {
             newStudent = 1,
-            salir = 2
+            salir = 2,
+            setFile = 3
         }
 
         static void Main(string[] args)
         {
             const string coma = ",";
-
+            
             var opcionMenuPpal = Menu();
             while (opcionMenuPpal == OpcionPpal.newStudent)
             {
-                var alumno = new Strudent();
+
+                switch (opcionMenuPpal)
+                {
+                    case OpcionPpal.newStudent:
+
+                    case OpcionPpal.salir:
+
+                    case OpcionPpal.setFile:
+                    default:
+                        break;
+                }
+                var alumno = new Student();
                 Console.WriteLine("Introduzca el ID");
                 alumno.ID = Convert.ToInt32(Console.ReadLine());
                 Console.WriteLine("Nombre:");
@@ -49,7 +69,8 @@ namespace StudentCreator
         {
             Console.WriteLine("Elige una opcion");
             Console.WriteLine("1. Crear Alumno");
-            Console.WriteLine("2. Salir");
+            Console.WriteLine("2. Escoger tipo de archivo");
+            Console.WriteLine("3. Salir");
             return (OpcionPpal) Convert.ToInt32(Console.ReadLine());
 
         }
