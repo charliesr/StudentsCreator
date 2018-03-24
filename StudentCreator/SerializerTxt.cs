@@ -6,11 +6,11 @@ using System.Threading.Tasks;
 
 namespace StudentCreator
 {
-    class JsonFile : ITextFileCreator
+    public class SerializerTxt : BaseSerializerFactory
     {
-        public void Append(string text)
+        public override BaseParser CreateParser()
         {
-            throw new NotImplementedException();
+            return new TxtParser();
         }
     }
 }

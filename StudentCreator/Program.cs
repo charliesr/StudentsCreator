@@ -10,69 +10,29 @@ namespace StudentCreator
 {
     class Program
     {
-        public enum TipoArchivo
-        {
-            Json = 1,
-            Txt = 2
-
-        }
-
-        private enum OpcionPpal
-        {
-            newStudent = 1,
-            salir = 2,
-            setFile = 3
-        }
-
         static void Main(string[] args)
         {
-            const string coma = ",";
-            
-            var opcionMenuPpal = Menu();
-            while (opcionMenuPpal == OpcionPpal.newStudent)
+            var config = new ConfigHelper();
+            var console = new ConsoleHelper();
+            var studentRepo = new StudentRepository(console);
+            var opcionMenuPpal = console.Menu();
+            while (opcionMenuPpal != OpcionPpal.salir)
             {
-
                 switch (opcionMenuPpal)
                 {
                     case OpcionPpal.newStudent:
-
-                    case OpcionPpal.salir:
+                        studentRepo.NewFromConsoleToText((TipoArchivo)Enum.Parse(typeof(TipoArchivo), config.GetConfigAppSetting("tipo")));
+                        break;
 
                     case OpcionPpal.setFile:
-                    default:
+                        console.Print("Escribe el tipo de serializacion");
+                        config.SetConfigAppSetting("tipo", console.GetLine());
+                        var appconfig = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
+                        config.SetConfigAppSettingsOnFile("tipo", config.GetConfigAppSetting("tipo"));
                         break;
                 }
-                var alumno = new Student();
-                Console.WriteLine("Introduzca el ID");
-                alumno.ID = Convert.ToInt32(Console.ReadLine());
-                Console.WriteLine("Nombre:");
-                alumno.Nombre = Console.ReadLine();
-
-                Console.WriteLine("Apellidos");
-                alumno.Apellidos = Console.ReadLine();
-
-                Console.WriteLine("DNI");
-                alumno.DNI = Console.ReadLine();
-
-                var text = alumno.ID + coma + alumno.Nombre + coma + alumno.Apellidos+ coma+ alumno.DNI;
-                File.AppendAllText("students.txt", text);
-                File.AppendAllText("students.txt", "\r\n");
-                opcionMenuPpal = Menu();
-
-            }
-
-
-
-        }
-
-        private static OpcionPpal Menu()
-        {
-            Console.WriteLine("Elige una opcion");
-            Console.WriteLine("1. Crear Alumno");
-            Console.WriteLine("2. Escoger tipo de archivo");
-            Console.WriteLine("3. Salir");
-            return (OpcionPpal) Convert.ToInt32(Console.ReadLine());
-
+                opcionMenuPpal = console.Menu();
+            }   
         }
     }
 }
