@@ -5,16 +5,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace StudentCreator
+namespace StudentCreator.Helpers
 {
-    public class ConfigHelper
+    public class ConfigHelper : IConfigHelper
     {
         public string GetConfigAppSetting(string variable)
         {
-            if (ConfigurationManager.AppSettings[variable] == string.Empty)
-            {
-                return "txt";
-            }
             return ConfigurationManager.AppSettings[variable];
         }
 

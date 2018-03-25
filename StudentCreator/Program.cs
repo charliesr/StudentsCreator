@@ -5,6 +5,8 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using StudentCreator.Helpers;
+using StudentCreator.Repositories;
 
 namespace StudentCreator
 {
@@ -12,9 +14,9 @@ namespace StudentCreator
     {
         static void Main(string[] args)
         {
-            var config = new ConfigHelper();
-            var console = new ConsoleHelper();
-            var studentRepo = new StudentRepository(console);
+            IConfigHelper config = new ConfigHelper();
+            IConsoleHelper console = new ConsoleHelper();
+            IStudentRepository studentRepo = new StudentRepository(console);
             var opcionMenuPpal = console.Menu();
             while (opcionMenuPpal != OpcionPpal.salir)
             {

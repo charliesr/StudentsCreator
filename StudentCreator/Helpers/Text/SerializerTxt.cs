@@ -4,11 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace StudentCreator
+namespace StudentCreator.Helpers.Text
 {
-    public class SerializerTxt : BaseSerializerFactory
+    public class SerializerTxt : IParserFactory
     {
-        public override BaseParser CreateParser()
+        public IParser CreateParser()
         {
             return new TxtParser();
         }

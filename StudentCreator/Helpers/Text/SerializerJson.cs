@@ -4,15 +4,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace StudentCreator
+namespace StudentCreator.Helpers.Text
 {
-    public class SerializerJson : BaseSerializerFactory
+    public class SerializerJson : IParserFactory
     {
-        public override BaseParser CreateParser()
+        public IParser CreateParser()
         {
             return new JsonParser();
         }
-
-
     }
 }

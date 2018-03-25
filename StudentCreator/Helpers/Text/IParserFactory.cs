@@ -4,9 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace StudentCreatorXUnitTests
+namespace StudentCreator.Helpers.Text
 {
-    public class Class1
+    public interface IParserFactory
     {
+        IParser CreateParser();
     }
 }

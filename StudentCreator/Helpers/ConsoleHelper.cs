@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace StudentCreator
+namespace StudentCreator.Helpers
 {
     public enum OpcionPpal
     {
@@ -19,9 +19,8 @@ namespace StudentCreator
         txt = 2
     }
 
-    public class ConsoleHelper
+    public class ConsoleHelper : IConsoleHelper
     {
-
         public void Print(string message)
         {
             Console.WriteLine(message);
@@ -39,6 +38,5 @@ namespace StudentCreator
             Print("3. Salir");
             return (OpcionPpal)Convert.ToInt32(GetLine());
         }
-
     }
 }
