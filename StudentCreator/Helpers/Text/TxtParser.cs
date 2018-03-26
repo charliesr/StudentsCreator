@@ -5,9 +5,13 @@ namespace StudentCreator.Helpers.Text
 {
     public class TxtParser : IParser
     {
-        public  void AddToFile(string filename, Student student)
+        public string FileExtension { get { return ".txt"; } }
+        // Generado por vs
+        //public string FileExtension => ".txt";
+
+        public void AddToFile(string filename, Student student)
         {
-            filename += ".txt";
+            filename += FileExtension;
             var content = student.ToString() + "\n\r";
             File.AppendAllText(filename, content);
         }

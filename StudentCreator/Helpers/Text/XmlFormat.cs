@@ -6,8 +6,11 @@ using System.Threading.Tasks;
 
 namespace StudentCreator.Helpers.Text
 {
-    public interface IParserFactory
+    class XmlFormat : IFormat
     {
-        IParser CreateParser();
+        public IParser CreateParser()
+        {
+            return new XmlParser(); 
+        }
     }
 }

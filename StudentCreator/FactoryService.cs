@@ -4,16 +4,18 @@ using StudentCreator.Helpers.Text;
 
 namespace StudentCreator
 {
-    public class FactoryService : IFactoryService
+    static class FormatFactory
     {
-        public IParserFactory CreateFactorySerializer(TipoArchivo tipo)
+        public static IFormat CreateFactorySerializer(TipoArchivo tipo)
         {
             switch (tipo)
             {
                 case TipoArchivo.json:
-                    return new SerializerJson();
+                    return new JsonFormat();
                 case TipoArchivo.txt:
-                    return new SerializerTxt();
+                    return new TxtFormat();
+                case TipoArchivo.xml:
+                    return new XmlFormat();
                 default:
                     return null;
             }

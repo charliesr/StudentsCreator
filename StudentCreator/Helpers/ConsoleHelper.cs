@@ -16,7 +16,8 @@ namespace StudentCreator.Helpers
     public enum TipoArchivo
     {
         json = 1,
-        txt = 2
+        txt = 2,
+        xml = 3
     }
 
     public class ConsoleHelper : IConsoleHelper

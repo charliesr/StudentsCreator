@@ -6,11 +6,11 @@ using System.Threading.Tasks;
 
 namespace StudentCreator.Helpers.Text
 {
-    public class SerializerJson : IParserFactory
+    public class TxtFormat : IFormat
     {
         public IParser CreateParser()
         {
-            return new JsonParser();
+            return new TxtParser();
         }
     }
 }

@@ -8,16 +8,14 @@ namespace StudentCreator.Repositories
     public class StudentRepository : IStudentRepository
     {
         private IConsoleHelper _console;
-        private IFactoryService _creator;
         public StudentRepository(IConsoleHelper console)
         {
             _console = console;
-            _creator = new FactoryService();
         }   
 
         public void NewFromConsoleToText(TipoArchivo tipo)
         {
-            IParserFactory serializerFactory = _creator.CreateFactorySerializer(tipo);
+            IFormat formato =  FormatFactory.CreateFactorySerializer(tipo);
             var alumno = new Student();
             _console.Print("Introduzca el ID");
             alumno.ID = Convert.ToInt32(_console.GetLine());
@@ -27,7 +25,7 @@ namespace StudentCreator.Repositories
             alumno.Apellidos = _console.GetLine();
             _console.Print("DNI");
             alumno.DNI = _console.GetLine();
-            var textSerializer = new TextWriter(serializerFactory);
+            var textSerializer = new FileWriter(formato);
             textSerializer.Append("students", alumno);
         }
     }

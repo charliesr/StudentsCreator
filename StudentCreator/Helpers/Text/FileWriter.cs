@@ -2,10 +2,10 @@
 
 namespace StudentCreator.Helpers.Text
 {
-    public class TextWriter
+    public class FileWriter
     {
         private IParser _parser;
-        public TextWriter(IParserFactory factory)
+        public FileWriter(IFormat factory)
         {
             _parser = factory.CreateParser();
         }
