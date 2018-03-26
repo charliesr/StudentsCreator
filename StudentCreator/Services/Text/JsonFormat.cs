@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace StudentCreator.Helpers.Text
+namespace StudentCreator.Services.Text
 {
     public class JsonFormat : IFormat
     {

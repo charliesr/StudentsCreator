@@ -5,7 +5,7 @@ using System.IO;
 using System.Xml;
 using System.Xml.Serialization;
 
-namespace StudentCreator.Helpers.Text
+namespace StudentCreator.Services.Text
 {
     public class XmlParser : IParser
     {
@@ -13,22 +13,24 @@ namespace StudentCreator.Helpers.Text
         // Generado por vs
         //public string FileExtension => ".xml";
 
-        public void AddToFile(string filename, Student student)
+        public void AddToFile<T>(string filename, T value) where T : class
         {
             filename += FileExtension;
-            var xmlSerializer = new XmlSerializer(typeof(List<Student>));
-            List<Student> students = new List<Student>();
+            var xmlSerializer = new XmlSerializer(typeof(List<T>));
+            List<T> values = new List<T>();
             if (File.Exists(filename))
             {
                 using (Stream reader = File.OpenRead(filename))
                 {
-                    students = xmlSerializer.Deserialize(reader) as List<Student>;
+                    values = xmlSerializer.Deserialize(reader) as List<T>;
+                    reader.Close();
                 }
             }
-            students.Add(student);
+            values.Add(value);
             using (Stream writer = File.Open(filename, FileMode.OpenOrCreate, FileAccess.Write))
             {
-                xmlSerializer.Serialize(writer, students);
+                xmlSerializer.Serialize(writer, values);
+                writer.Close();
             }
         }
     }

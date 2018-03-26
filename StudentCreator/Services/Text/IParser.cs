@@ -1,10 +1,10 @@
 ﻿using StudentCreator.Models;
 
-namespace StudentCreator.Helpers.Text
+namespace StudentCreator.Services.Text
 {
     public interface IParser
     {
-        void AddToFile(string filename, Student student);
+        void AddToFile<T>(string filename, T value) where T : class;
         string FileExtension { get;}
     }
 }

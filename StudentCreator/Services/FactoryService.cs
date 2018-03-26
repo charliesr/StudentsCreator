@@ -1,20 +1,21 @@
 ﻿using System;
-using StudentCreator.Helpers;
-using StudentCreator.Helpers.Text;
+using StudentCreator.Services;
+using StudentCreator.Services.Text;
+using StudentCreator.Models;
 
 namespace StudentCreator
 {
     static class FormatFactory
     {
-        public static IFormat CreateFactorySerializer(TipoArchivo tipo)
+        public static IFormat CreateFormat(Enums.TipoArchivo tipo)
         {
             switch (tipo)
             {
-                case TipoArchivo.json:
+                case Enums.TipoArchivo.json:
                     return new JsonFormat();
-                case TipoArchivo.txt:
+                case Enums.TipoArchivo.txt:
                     return new TxtFormat();
-                case TipoArchivo.xml:
+                case Enums.TipoArchivo.xml:
                     return new XmlFormat();
                 default:
                     return null;

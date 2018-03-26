@@ -21,7 +21,12 @@ namespace StudentCreator.Models
 
         public override int GetHashCode()
         {
-            return base.GetHashCode();
+            var hashCode = 287315274;
+            hashCode = hashCode * -1521134295 + ID.GetHashCode();
+            hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(Nombre);
+            hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(Apellidos);
+            hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(DNI);
+            return hashCode;
         }
 
         public override string ToString()

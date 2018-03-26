@@ -1,6 +1,6 @@
 ﻿using StudentCreator.Models;
 
-namespace StudentCreator.Helpers.Text
+namespace StudentCreator.Services.Text
 {
     public class FileWriter
     {

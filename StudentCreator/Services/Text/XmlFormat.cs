@@ -4,13 +4,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace StudentCreator.Helpers.Text
+namespace StudentCreator.Services.Text
 {
-    public class TxtFormat : IFormat
+    public class XmlFormat : IFormat
     {
         public IParser CreateParser()
         {
-            return new TxtParser();
+            return new XmlParser(); 
         }
     }
 }

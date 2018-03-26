@@ -4,9 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace StudentCreatorTests
+namespace StudentCreator.Services.Text
 {
-    class SerializerJsonTests
+    public interface IFormat
     {
+        IParser CreateParser();
     }
 }

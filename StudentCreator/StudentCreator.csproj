@@ -46,25 +46,26 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="FactoryService.cs" />
-    <Compile Include="Helpers\ConfigHelper.cs" />
-    <Compile Include="Helpers\ConsoleHelper.cs" />
-    <Compile Include="Helpers\IConfigHelper.cs" />
-    <Compile Include="Helpers\IConsoleHelper.cs" />
-    <Compile Include="Helpers\Text\IParser.cs" />
-    <Compile Include="Helpers\Text\IFormat.cs" />
-    <Compile Include="Helpers\Text\JsonParser.cs" />
-    <Compile Include="Helpers\Text\JsonFormat.cs" />
-    <Compile Include="Helpers\Text\XmlFormat.cs" />
-    <Compile Include="Helpers\Text\XmlParser.cs" />
+    <Compile Include="Services\FactoryService.cs" />
+    <Compile Include="Models\Enums.cs" />
+    <Compile Include="Services\ConfigHelper.cs" />
+    <Compile Include="Services\ConsoleHelper.cs" />
+    <Compile Include="Services\IConfigHelper.cs" />
+    <Compile Include="Services\IConsoleHelper.cs" />
+    <Compile Include="Services\Text\IParser.cs" />
+    <Compile Include="Services\Text\IFormat.cs" />
+    <Compile Include="Services\Text\JsonParser.cs" />
+    <Compile Include="Services\Text\JsonFormat.cs" />
+    <Compile Include="Services\Text\XmlFormat.cs" />
+    <Compile Include="Services\Text\XmlParser.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Helpers\Text\FileWriter.cs" />
+    <Compile Include="Services\Text\FileWriter.cs" />
     <Compile Include="Models\Student.cs" />
-    <Compile Include="Helpers\Text\TxtFormat.cs" />
+    <Compile Include="Services\Text\TxtFormat.cs" />
     <Compile Include="Repositories\IStudentRepository.cs" />
     <Compile Include="Repositories\StudentRepository.cs" />
-    <Compile Include="Helpers\Text\TxtParser.cs" />
+    <Compile Include="Services\Text\TxtParser.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config">

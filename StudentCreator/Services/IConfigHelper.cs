@@ -1,6 +1,6 @@
 ﻿using System.Configuration;
 
-namespace StudentCreator.Helpers
+namespace StudentCreator.Services
 {
     public interface IConfigHelper
     {

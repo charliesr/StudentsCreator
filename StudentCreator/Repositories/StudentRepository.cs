@@ -1,7 +1,6 @@
-﻿using StudentCreator.Helpers;
-using StudentCreator.Helpers.Text;
+﻿using StudentCreator.Services;
+using StudentCreator.Services.Text;
 using StudentCreator.Models;
-using System;
 
 namespace StudentCreator.Repositories
 {
@@ -13,18 +12,10 @@ namespace StudentCreator.Repositories
             _console = console;
         }   
 
-        public void NewFromConsoleToText(TipoArchivo tipo)
+        public void NewFromConsoleToText(Enums.TipoArchivo tipo)
         {
-            IFormat formato =  FormatFactory.CreateFactorySerializer(tipo);
-            var alumno = new Student();
-            _console.Print("Introduzca el ID");
-            alumno.ID = Convert.ToInt32(_console.GetLine());
-            _console.Print("Nombre:");
-            alumno.Nombre = _console.GetLine();
-            _console.Print("Apellidos");
-            alumno.Apellidos = _console.GetLine();
-            _console.Print("DNI");
-            alumno.DNI = _console.GetLine();
+            IFormat formato =  FormatFactory.CreateFormat(tipo);
+            var alumno = _console.GetObjectFromConsole<Student>();
             var textSerializer = new FileWriter(formato);
             textSerializer.Append("students", alumno);
         }

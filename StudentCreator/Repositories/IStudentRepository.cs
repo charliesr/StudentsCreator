@@ -1,9 +1,10 @@
-﻿using StudentCreator.Helpers;
+﻿using StudentCreator.Models;
+using StudentCreator.Services;
 
 namespace StudentCreator.Repositories
 {
     public interface IStudentRepository
     {
-        void NewFromConsoleToText(TipoArchivo tipo);
+        void NewFromConsoleToText(Enums.TipoArchivo tipo);
     }
 }

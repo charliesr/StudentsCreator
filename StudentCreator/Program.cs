@@ -5,8 +5,9 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using StudentCreator.Helpers;
+using StudentCreator.Services;
 using StudentCreator.Repositories;
+using StudentCreator.Models;
 
 namespace StudentCreator
 {
@@ -18,15 +19,15 @@ namespace StudentCreator
             IConsoleHelper console = new ConsoleHelper();
             IStudentRepository studentRepo = new StudentRepository(console);
             var opcionMenuPpal = console.Menu();
-            while (opcionMenuPpal != OpcionPpal.salir)
+            while (opcionMenuPpal != Enums.OpcionPpal.salir)
             {
                 switch (opcionMenuPpal)
                 {
-                    case OpcionPpal.newStudent:
-                        studentRepo.NewFromConsoleToText((TipoArchivo)Enum.Parse(typeof(TipoArchivo), config.GetConfigAppSetting("tipo")));
+                    case Enums.OpcionPpal.newStudent:
+                        studentRepo.NewFromConsoleToText((Enums.TipoArchivo)Enum.Parse(typeof(Enums.TipoArchivo), config.GetConfigAppSetting("tipo")));
                         break;
 
-                    case OpcionPpal.setFile:
+                    case Enums.OpcionPpal.setFile:
                         console.Print("Escribe el tipo de serializacion");
                         config.SetConfigAppSetting("tipo", console.GetLine());
                         var appconfig = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
