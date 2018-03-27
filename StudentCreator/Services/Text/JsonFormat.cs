@@ -11,7 +11,7 @@ namespace StudentCreator.Services.Text
         //public string FileExtension => ".json";
         public JsonFormat(string stringPointer)
         {
-            StringPointer = StringPointer;
+            StringPointer = stringPointer + ".json";
         }
 
         public void Add<T>(T value) where T : class

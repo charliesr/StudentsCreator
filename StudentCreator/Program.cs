@@ -15,28 +15,31 @@ namespace StudentCreator
     {
         static void Main(string[] args)
         {
-            IConfigHelper config = new ConfigHelper();
-            IConsoleHelper console = new ConsoleHelper();
+            IConfig config = new ConfigHelper();
+            IConsole console = new ConsoleHelper();
             IStudentRepository studentRepo = null;
+            const string environmentFileTypeKey = "StudentFileType";
             var opcionMenuPpal = console.Menu();
             while (opcionMenuPpal != Enums.OpcionPpal.salir)
             {
                 switch (opcionMenuPpal)
                 {
                     case Enums.OpcionPpal.newStudent:
-                        studentRepo = new StudentRepository(console, (Enums.TipoArchivo)Enum.Parse(typeof(Enums.TipoArchivo),config.GetConfigAppSetting("tipo")), Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "student");
-                        studentRepo.NewFromConsoleToText();
+                        studentRepo = new StudentRepository(console, 
+                            FormatFactory.CreateFormat((Enums.TipoArchivo)Enum.Parse(typeof(Enums.TipoArchivo),config.GetEnvironmentValue(config.GetConfigAppSetting(environmentFileTypeKey))),
+                            Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + @"\student"));
+                        studentRepo.AddFromConsole();
                         break;
-
                     case Enums.OpcionPpal.setFile:
                         console.Print("Escribe el tipo de serializacion");
-                        config.SetConfigAppSetting("tipo", console.GetLine());
-                        var appconfig = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
-                        config.SetConfigAppSettingsOnFile("tipo", config.GetConfigAppSetting("tipo"));
+                        config.SetEnvironmentValue(config.GetConfigAppSetting(environmentFileTypeKey), console.GetLine());
                         break;
                 }
+                console.ClearScreen();
                 opcionMenuPpal = console.Menu();
-            }   
+            }
+            console.Print("Adios!!!");
+            console.Sleep(5000);
         }
     }
 }

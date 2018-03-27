@@ -1,57 +1,28 @@
-﻿using StudentCreator.Services.Text;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using StudentCreator;
+using StudentCreator.Services.Text;
+using StudentCreator.Models;
 using Xunit;
 
 namespace StudentCreatorXUnitTests
 {
     public class FactoryTesting
     {
-        IFormat factory1 = new JsonFormat();
-        IFormat factory2 = new TxtFormat();
-        IFormat factory3 = new XmlFormat();
-
         [Fact]
-        public void ParserIsJsonTest()
+        public void FactoryReturnsJson()
         {
-            Assert.IsType<JsonFormat>(factory1.CreateParser());
-
+            Assert.IsType<JsonFormat>(FormatFactory.CreateFormat(Enums.TipoArchivo.json, "prueba"));
         }
 
         [Fact]
-        public void FormatIsJsonTest()
+        public void FactoryReturnsTxt()
         {
-            var jsonFormat = factory1.CreateParser();
-            Assert.True(jsonFormat.FileExtension == ".json");
+            Assert.IsType<TxtFormat>(FormatFactory.CreateFormat(Enums.TipoArchivo.txt, "prueba"));
         }
 
         [Fact]
-        public void ParserIsTxtTest()
+        public void FactoryReturnsXml()
         {
-            Assert.IsType<TxtFormat>(factory2.CreateParser());
-        }
-
-        [Fact]
-        public void FormatIsTxtTest()
-        {
-            var txtFormat = factory2.CreateParser();
-            Assert.True(txtFormat.FileExtension == ".txt");
-        }
-
-        [Fact]
-        public void ParserIsXmlTest()
-        {
-            Assert.IsType<XmlFormat>(factory3.CreateParser());
-        }
-
-        [Fact]
-        public void FormatIsXmlTest()
-        {
-            var xmlFormat = factory3.CreateParser();
-            Assert.True(xmlFormat.FileExtension == ".xml");
+            Assert.IsType<XmlFormat>(FormatFactory.CreateFormat(Enums.TipoArchivo.xml, "prueba"));
         }
     }
 }

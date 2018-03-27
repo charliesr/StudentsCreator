@@ -50,8 +50,8 @@
     <Compile Include="Models\Enums.cs" />
     <Compile Include="Services\ConfigHelper.cs" />
     <Compile Include="Services\ConsoleHelper.cs" />
-    <Compile Include="Services\IConfigHelper.cs" />
-    <Compile Include="Services\IConsoleHelper.cs" />
+    <Compile Include="Services\IConfig.cs" />
+    <Compile Include="Services\IConsole.cs" />
     <Compile Include="Services\Text\IFormat.cs" />
     <Compile Include="Services\Text\JsonFormat.cs" />
     <Compile Include="Services\Text\XmlFormat.cs" />
@@ -70,4 +70,8 @@
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PreBuildEvent>copy /Y "$(ProjectDir)StudentsEnvironment.bat" "$(TargetDir)"
+StudentsEnvironment.bat</PreBuildEvent>
+  </PropertyGroup>
 </Project>

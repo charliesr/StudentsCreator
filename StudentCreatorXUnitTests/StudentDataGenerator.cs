@@ -12,9 +12,9 @@ namespace StudentCreatorXUnitTests
         
         private readonly List<object[]> _data = new List<object[]>
         {
-            new object[] {"student", new Student (Guid.NewGuid(),1,"Carlos","Sanchez Romero","54545454F")
+            new object[] {new Student (Guid.NewGuid(),1,"Carlos","Sanchez Romero","54545454F")
             },
-            new object[] {"student", new Student (Guid.NewGuid(),2,"Carlos2","Sanchez2","64646464G")
+            new object[] {new Student (Guid.NewGuid(),2,"Carlos2","Sanchez2","64646464G")
             }
         };
 

@@ -1,12 +1,13 @@
 ﻿using System;
 using StudentCreator.Models;
 using System.Reflection;
+using System.Threading;
 
 namespace StudentCreator.Services
 {
 
 
-    public class ConsoleHelper : IConsoleHelper
+    public class ConsoleHelper : IConsole
     {
         public void Print(string message)
         {
@@ -40,6 +41,16 @@ namespace StudentCreator.Services
 
             return instance;
 
+        }
+
+        public void ClearScreen()
+        {
+            Console.Clear();
+        }
+
+        public void Sleep(int milisecs)
+        {
+            Thread.Sleep(milisecs);
         }
     }
 }

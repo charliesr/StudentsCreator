@@ -5,7 +5,7 @@ using StudentCreator.Models;
 
 namespace StudentCreator
 {
-    static class FormatFactory
+    public static class FormatFactory
     {
         public static IFormat CreateFormat(Enums.TipoArchivo tipo, string stringPointer)
         {

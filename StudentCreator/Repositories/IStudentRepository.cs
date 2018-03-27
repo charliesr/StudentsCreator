@@ -5,6 +5,6 @@ namespace StudentCreator.Repositories
 {
     public interface IStudentRepository
     {
-        void NewFromConsoleToText();
+        void AddFromConsole();
     }
 }

@@ -1,34 +1,23 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Configuration;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace StudentCreator.Services
 {
-    public class ConfigHelper : IConfigHelper
+    public class ConfigHelper : IConfig
     {
         public string GetConfigAppSetting(string variable)
         {
             return ConfigurationManager.AppSettings[variable];
         }
 
-        public void SetConfigAppSetting(string variable, string value)
+        public string GetEnvironmentValue(string variable)
         {
-            ConfigurationManager.AppSettings[variable] = value;
+            return Environment.GetEnvironmentVariable(variable,EnvironmentVariableTarget.User);
         }
 
-        public void SetConfigAppSettingsOnFile(string variable, string value)
+        public void SetEnvironmentValue(string variable, string value)
         {
-            var appconfig = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
-            appconfig.AppSettings.Settings[variable].Value = value;
-            Save(appconfig);
-        }
-
-        private void Save(Configuration config)
-        {
-            config.Save();
+            Environment.SetEnvironmentVariable(variable, value, EnvironmentVariableTarget.User);
         }
     }
 }

@@ -13,7 +13,7 @@ namespace StudentCreator.Services.Text
 
         public XmlFormat(string stringPointer)
         {
-            StringPointer = stringPointer;
+            StringPointer = stringPointer + ".xml";
         }
         public void Add<T>(T value) where T : class
         {
@@ -24,14 +24,12 @@ namespace StudentCreator.Services.Text
                 using (Stream reader = File.OpenRead(StringPointer))
                 {
                     values = xmlSerializer.Deserialize(reader) as List<T>;
-                    reader.Close();
                 }
             }
             values.Add(value);
             using (Stream writer = File.Open(StringPointer, FileMode.OpenOrCreate, FileAccess.Write))
             {
                 xmlSerializer.Serialize(writer, values);
-                writer.Close();
             }
         }
     }

@@ -6,20 +6,18 @@ namespace StudentCreator.Repositories
 {
     public class StudentRepository : IStudentRepository
     {
-        private readonly IConsoleHelper _console;
+        private readonly IConsole _console;
         private readonly IFormat _format;
-        public StudentRepository(IConsoleHelper console, Enums.TipoArchivo tipo, string stringPointer)
+        public StudentRepository(IConsole console, IFormat format)
         {
             _console = console;
-            _format = FormatFactory.CreateFormat(tipo, stringPointer);
+            _format = format;
         }   
 
-        public void NewFromConsoleToText()
+        public void AddFromConsole()
         {
             var alumno = _console.GetObjectFromConsole<Student>();
             _format.Add(alumno);
-            /* var textSerializer = new FileWriter(formato);
-            textSerializer.Append(alumno); */
         }
     }
 }

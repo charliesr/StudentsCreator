@@ -12,18 +12,22 @@ namespace StudentCreator.Services.Text
 
         public TxtFormat(string stringPointer)
         {
-            StringPointer = stringPointer;
+            StringPointer = stringPointer + ".txt";
         }
 
         public void Add<T>(T value) where T : class
         {
             var content = string.Empty;
-            var last = typeof(T).GetProperties()[typeof(T).GetProperties().Length - 1];
-            foreach (var prop in typeof(T).GetProperties())
+            var assembly = Assembly.GetExecutingAssembly(); ;
+            var type = assembly.GetType(typeof(T).FullName);
+            var methodToString = type.GetMethod("ToString");
+            object[] propValues = new object[type.GetProperties().Length];
+            for (int i = 0; i < type.GetProperties().Length; i++)
             {
-                content += prop.GetValue(value);
-                if (!prop.Equals(last)) content += ",";
+                propValues[i] = type.GetProperties()[i].GetValue(value);
             }
+            var classInstance = Activator.CreateInstance(type,propValues);
+            content = (string)methodToString.Invoke(classInstance, null);
             File.AppendAllText(StringPointer, content);
         }
     }
