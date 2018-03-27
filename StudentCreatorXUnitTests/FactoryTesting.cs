@@ -48,7 +48,7 @@ namespace StudentCreatorXUnitTests
         }
 
         [Fact]
-        public void FormatIsXtmTest()
+        public void FormatIsXmlTest()
         {
             var xmlFormat = factory3.CreateParser();
             Assert.True(xmlFormat.FileExtension == ".xml");

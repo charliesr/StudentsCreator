@@ -1,4 +1,5 @@
 ﻿using StudentCreator.Models;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 
@@ -11,19 +12,9 @@ namespace StudentCreatorXUnitTests
         
         private readonly List<object[]> _data = new List<object[]>
         {
-            new object[] {"student", new Student {
-                ID = 1,
-                Nombre = "Carlos",
-                Apellidos = "Sanchez Romero",
-                DNI = "54545454F"
-                }
+            new object[] {"student", new Student (Guid.NewGuid(),1,"Carlos","Sanchez Romero","54545454F")
             },
-            new object[] {"student", new Student {
-                ID = 2,
-                Nombre = "Carlos2",
-                Apellidos = "Sanchez2",
-                DNI = "64646464G"
-                }
+            new object[] {"student", new Student (Guid.NewGuid(),2,"Carlos2","Sanchez2","64646464G")
             }
         };
 

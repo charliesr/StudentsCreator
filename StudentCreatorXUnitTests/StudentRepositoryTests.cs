@@ -4,6 +4,7 @@ using StudentCreator.Services.Text;
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Xml;
 using System.Xml.Serialization;
 using Xunit;
@@ -34,8 +35,8 @@ namespace StudentCreatorXUnitTests
             textSerializer.Append(filename, alumno);
             filename += ".json";
             Assert.True(File.Exists(filename));
-            var listOfStudents = JsonConvert.DeserializeObject<List<Student>>(File.ReadAllText(filename));
-            Assert.Contains(alumno, listOfStudents);
+            var alumnoInFile = JsonConvert.DeserializeObject<List<Student>>(File.ReadAllText(filename)).Where(a => a.GUID == alumno.GUID).First();
+            Assert.Equal(alumnoInFile, alumno);
         }
 
         [Theory]
@@ -47,7 +48,9 @@ namespace StudentCreatorXUnitTests
             filename += ".txt";
             Assert.True(File.Exists(filename));
             var txtString = File.ReadAllText(filename);
-            Assert.Contains(alumno.ToString(), txtString);
+            var alumnoSplitted = txtString.Split(',');
+            var alumnoInFile = new Student(Guid.Parse(alumnoSplitted.First()), Convert.ToInt32(alumnoSplitted[1]), alumnoSplitted[2], alumnoSplitted[3], alumnoSplitted.Last());
+            Assert.Equal(alumno, alumnoInFile);
         }
 
         [Theory]
@@ -59,13 +62,15 @@ namespace StudentCreatorXUnitTests
             filename += ".xml";
             Assert.True(File.Exists(filename));
             List<Student> alumnosInFile;
+            Student alumnoInFile;
             using (Stream reader = File.OpenRead(filename))
             {
                 var xmlSerializer = new XmlSerializer(typeof(List<Student>));
                 alumnosInFile = xmlSerializer.Deserialize(reader) as List<Student>;
+                alumnoInFile = alumnosInFile.Where(a => a.GUID == alumno.GUID).First();
                 reader.Close();
             }
-            Assert.Contains(alumno,alumnosInFile);
+            Assert.Equal(alumno,alumnoInFile);
         }
 
 
