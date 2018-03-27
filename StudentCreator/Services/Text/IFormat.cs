@@ -1,13 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using StudentCreator.Models;
 
 namespace StudentCreator.Services.Text
 {
     public interface IFormat
     {
-        IParser CreateParser();
+        string StringPointer { get;  }
+        void Add<T>(T value) where T : class;
     }
 }

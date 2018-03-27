@@ -17,14 +17,15 @@ namespace StudentCreator
         {
             IConfigHelper config = new ConfigHelper();
             IConsoleHelper console = new ConsoleHelper();
-            IStudentRepository studentRepo = new StudentRepository(console);
+            IStudentRepository studentRepo = null;
             var opcionMenuPpal = console.Menu();
             while (opcionMenuPpal != Enums.OpcionPpal.salir)
             {
                 switch (opcionMenuPpal)
                 {
                     case Enums.OpcionPpal.newStudent:
-                        studentRepo.NewFromConsoleToText((Enums.TipoArchivo)Enum.Parse(typeof(Enums.TipoArchivo), config.GetConfigAppSetting("tipo")));
+                        studentRepo = new StudentRepository(console, (Enums.TipoArchivo)Enum.Parse(typeof(Enums.TipoArchivo),config.GetConfigAppSetting("tipo")), Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "student");
+                        studentRepo.NewFromConsoleToText();
                         break;
 
                     case Enums.OpcionPpal.setFile:

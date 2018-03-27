@@ -7,16 +7,16 @@ namespace StudentCreator
 {
     static class FormatFactory
     {
-        public static IFormat CreateFormat(Enums.TipoArchivo tipo)
+        public static IFormat CreateFormat(Enums.TipoArchivo tipo, string stringPointer)
         {
             switch (tipo)
             {
                 case Enums.TipoArchivo.json:
-                    return new JsonFormat();
+                    return new JsonFormat(stringPointer);
                 case Enums.TipoArchivo.txt:
-                    return new TxtFormat();
+                    return new TxtFormat(stringPointer);
                 case Enums.TipoArchivo.xml:
-                    return new XmlFormat();
+                    return new XmlFormat(stringPointer);
                 default:
                     return null;
             }

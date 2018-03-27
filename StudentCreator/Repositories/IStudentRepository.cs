@@ -5,6 +5,6 @@ namespace StudentCreator.Repositories
 {
     public interface IStudentRepository
     {
-        void NewFromConsoleToText(Enums.TipoArchivo tipo);
+        void NewFromConsoleToText();
     }
 }

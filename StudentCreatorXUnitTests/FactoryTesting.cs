@@ -17,7 +17,7 @@ namespace StudentCreatorXUnitTests
         [Fact]
         public void ParserIsJsonTest()
         {
-            Assert.IsType<JsonParser>(factory1.CreateParser());
+            Assert.IsType<JsonFormat>(factory1.CreateParser());
 
         }
 
@@ -31,7 +31,7 @@ namespace StudentCreatorXUnitTests
         [Fact]
         public void ParserIsTxtTest()
         {
-            Assert.IsType<TxtParser>(factory2.CreateParser());
+            Assert.IsType<TxtFormat>(factory2.CreateParser());
         }
 
         [Fact]
@@ -44,7 +44,7 @@ namespace StudentCreatorXUnitTests
         [Fact]
         public void ParserIsXmlTest()
         {
-            Assert.IsType<XmlParser>(factory3.CreateParser());
+            Assert.IsType<XmlFormat>(factory3.CreateParser());
         }
 
         [Fact]
