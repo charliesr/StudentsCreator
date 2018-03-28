@@ -17,6 +17,7 @@ namespace StudentCreator.Services.Text
 
         public void Add<T>(T value) where T : class
         {
+            Program.log.Info("Añadimos " + typeof(T).Name + "a archivo " + StringPointer);
             var content = string.Empty;
             var assembly = Assembly.GetExecutingAssembly(); ;
             var type = assembly.GetType(typeof(T).FullName);

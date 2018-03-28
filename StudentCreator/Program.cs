@@ -8,18 +8,23 @@ using System.Threading.Tasks;
 using StudentCreator.Services;
 using StudentCreator.Repositories;
 using StudentCreator.Models;
+using log4net;
+using System.Reflection;
 
 namespace StudentCreator
 {
-    class Program
+    public class Program
     {
+        public static readonly ILog log = LogManager.GetLogger(MethodBase.GetCurrentMethod().DeclaringType);
         static void Main(string[] args)
         {
+            
             IConfig config = new ConfigHelper();
             IConsole console = new ConsoleHelper();
             IStudentRepository studentRepo = null;
-            const string environmentFileTypeKey = "StudentFileType";
+            const string environmentFileTypeKey = "EnvVarTipo";
             var opcionMenuPpal = console.Menu();
+            log.Info("Elegida la opcion " + opcionMenuPpal.ToString());
             while (opcionMenuPpal != Enums.OpcionPpal.salir)
             {
                 switch (opcionMenuPpal)

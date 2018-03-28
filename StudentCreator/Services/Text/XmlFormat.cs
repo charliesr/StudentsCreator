@@ -17,6 +17,7 @@ namespace StudentCreator.Services.Text
         }
         public void Add<T>(T value) where T : class
         {
+            Program.log.Info("Añadimos " + typeof(T).Name + "a archivo " + StringPointer);
             var xmlSerializer = new XmlSerializer(typeof(List<T>));
             List<T> values = new List<T>();
             if (File.Exists(StringPointer))

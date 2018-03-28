@@ -9,6 +9,10 @@ namespace StudentCreator.Services
 
     public class ConsoleHelper : IConsole
     {
+        public ConsoleHelper()
+        {
+            Program.log.Debug("Creada instancia de ConsoleClass");
+        }
         public void Print(string message)
         {
             Console.WriteLine(message);
@@ -30,13 +34,18 @@ namespace StudentCreator.Services
         public T GetObjectFromConsole<T>() where T : class
         {
             var assembly = Assembly.GetExecutingAssembly();
-            var type = assembly.GetType(typeof(T).Name);
+            var type = assembly.GetType(typeof(T).FullName);
             var instance = Activator.CreateInstance(type) as T;
 
             foreach (var prop in type.GetProperties())
             {
+                if (prop.PropertyType == typeof(Guid))
+                {
+                    prop.SetValue(instance, Guid.NewGuid());
+                    continue;
+                }
                 Print(prop.Name);
-                prop.SetValue(instance, GetLine());
+                instance.SetPropertyValue(prop.Name, GetLine());
             }
 
             return instance;

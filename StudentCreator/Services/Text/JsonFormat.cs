@@ -16,6 +16,7 @@ namespace StudentCreator.Services.Text
 
         public void Add<T>(T value) where T : class
         {
+            Program.log.Info("Añadimos " + typeof(T).Name + "a archivo " + StringPointer);
             var values = File.Exists(StringPointer) ? JsonConvert.DeserializeObject<List<T>>(File.ReadAllText(StringPointer)) : new List<T>();
             values.Add(value);
             File.WriteAllText(StringPointer, JsonConvert.SerializeObject(values));
